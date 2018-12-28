@@ -10,7 +10,7 @@
         <a class="nav-link" routerLink="/news/lists">Noticias</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/users">Usuarios</a>
+        <a class="nav-link" routerLink="/auth/login">Autenticacion</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/tvshows">Series de TV</a>
@@ -28,5 +28,12 @@
     </ul>
   </div>
 </nav>
+
+<ul>
+  <li *ngFor="let item of lista | async">
+    {{item}}
+  </li>
+</ul>
+
 
 <router-outlet></router-outlet>
