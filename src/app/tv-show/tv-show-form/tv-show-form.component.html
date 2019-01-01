@@ -1,0 +1,74 @@
+<h2 class="text-center">
+    Crear nueva serie de televisión
+  </h2>
+  <mat-divider></mat-divider>
+  
+  <form [formGroup]="tvShowForm" (ngSubmit)="submit()" novalidate style="margin-left: 350px; margin-right: 350px;" class="text-center">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field class="full-width example-form">
+          <input matInput placeholder="Titulo" formControlName="title" required>
+          <mat-error *ngIf="tvShowForm.controls['title'].hasError('required')">
+            Titulo <strong>requerido</strong>.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12">
+        <mat-form-field class="example-full-width example-form">
+          <textarea rows="9" matInput placeholder="Descripción" formControlName="description" required></textarea>
+          <mat-error *ngIf="tvShowForm.controls['description'].hasError('required')">
+            Descripción <strong>requerida</strong>.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Actores" formControlName="actor" required>
+          <mat-error *ngIf="tvShowForm.controls['actor'].hasError('required')">
+            Actores <strong>requerido</strong>.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="full-width">
+          <input matInput type="number" formControlName="scoring" placeholder="Puntuación" min="0" max="10" required>
+          <mat-hint>Entre 0 y 10</mat-hint>
+          <mat-error *ngIf="tvShowForm.controls['scoring'].hasError('required')">
+            Puntuación <strong>requerida</strong>.
+          </mat-error>
+          <mat-error *ngIf="tvShowForm.controls['scoring'].hasError('min')">
+            Puntuación <strong>debe ser mayor que 0</strong>.
+          </mat-error>
+          <mat-error *ngIf="tvShowForm.controls['scoring'].hasError('max')">
+            Puntuación <strong>debe ser menor que 10</strong>.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div id="image-tvshow" class="fileinput fileinput-new" data-provides="fileinput">
+          <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 10em; height: 75px"></div>
+          <div>
+            <span class="btn btn-default btn-file">
+              <span class="btn btn-dark fileinput-new">Seleccionar imagen</span>
+              <span class="btn btn-info fileinput-exists">Cambiar</span>
+              <input id="file-upload-input" type="file" name="file-upload-input">
+            </span>
+            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remover</a>
+          </div>
+        </div><br />
+      </div>
+    </div>
+    <mat-toolbar class="buttons-toolbar">
+      <button mat-fab color="primary" type="submit" [disabled]="!tvShowForm.valid"
+              style="margin-right: 10px;" *ngIf="!update">Crear</button>
+      <button mat-fab color="primary" type="submit" [disabled]="!tvShowForm.valid"
+              style="margin-right: 10px;" *ngIf="update">Actualizar</button>
+      <button mat-fab color="warn" (click)="cleanTvShowForm()" style="margin-right: 10px;">Limpiar</button>
+      <button mat-fab color="warn" (click)="goListTvShows()">Cancelar</button>
+    </mat-toolbar>
+  </form>
+  

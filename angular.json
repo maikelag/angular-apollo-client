@@ -24,11 +24,13 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/bootstrap/dist/css/bootstrap.min.css"
+              "src/assets/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/jasny-bootstrap/css/jasny-bootstrap.css"
             ],
             "scripts": [
               "src/assets/jquery/jquery-3.1.1.min.js",
-              "src/assets/bootstrap/dist/js/bootstrap.min.js"
+              "src/assets/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/jasny-bootstrap/js/jasny-bootstrap.js"
             ]
           },
           "configurations": {

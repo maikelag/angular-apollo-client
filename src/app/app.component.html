@@ -7,33 +7,32 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/news/lists">Noticias</a>
+        <a class="nav-link" routerLink="/tvshows">Series de TV</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/auth/login">Autenticacion</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tvshows">Series de TV</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tv-shows/details">Series de TV NGRX</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tv-shows/form-store">Crear series de TV NGRX</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
+    <a class="nav-link float-right" (click)="logout()" [routerLink]="['/auth/login']" *ngIf="isLogout()">Logout</a>
   </div>
 </nav>
 
-<ul>
-  <li *ngFor="let item of lista | async">
-    {{item}}
-  </li>
-</ul>
+<div class="row">
+  <div class="col-3">
+    <mat-nav-list style="padding: 25px;" dense>
+      <mat-list-item routerLinkActive="active" style="background-color: lavender">
+        <p>Aguacate</p>
+      </mat-list-item>
+      <mat-list-item >
+        <p>Aguacate</p>
+      </mat-list-item>
+      <mat-list-item >
+        <p>Aguacate</p>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <div class="col-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 
-
-<router-outlet></router-outlet>

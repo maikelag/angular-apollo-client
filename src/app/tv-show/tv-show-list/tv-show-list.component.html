@@ -1,0 +1,77 @@
+<h4 class="text-center">Listado de Series de TV</h4>
+
+<div class="animated fadeIn" style="margin-left: 2px;">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <button mat-stroked-button color="primary" style="margin-right: 10px;" routerLink="/tvshows/create">
+            Crear
+          </button>
+          <button mat-stroked-button color="warn" style="margin-right: 10px;" (click)="deleteManyTvShow()" *ngIf="selectedTvShows() > 0">
+            Eliminar
+          </button>
+          <button mat-stroked-button color="accent" style="margin-right: 10px;" (click)="goToEdit()" *ngIf="selectedTvShows() === 1">
+            Editar
+          </button>
+        </div>
+        <div class="card-block">
+          <table mat-table [dataSource]="tvShowsArray" class="mat-elevation-z8">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef>Titulo</th>
+              <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="actor">
+              <th mat-header-cell *matHeaderCellDef>Actores</th>
+              <td mat-cell *matCellDef="let element">{{ element.actor }}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="scoring">
+              <th mat-header-cell *matHeaderCellDef>Puntuacion</th>
+              <td mat-cell *matCellDef="let element">{{ element.scoring }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              (click)="selection.toggle(row)"
+            ></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
