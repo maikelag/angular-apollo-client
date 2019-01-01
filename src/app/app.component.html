@@ -10,7 +10,7 @@
         <a class="nav-link" routerLink="/tvshows" *ngIf="isLogout()">Series de TV</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/auth/login">Autenticacion</a>
+        <a class="nav-link" routerLink="/auth/login" *ngIf="!isLogout()">Autenticacion</a>
       </li>
     </ul>
     <a class="nav-link float-right" (click)="logout()" [routerLink]="['/auth/login']" *ngIf="isLogout()">Logout</a>
