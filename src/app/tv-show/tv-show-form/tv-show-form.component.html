@@ -63,12 +63,12 @@
       </div>
     </div>
     <mat-toolbar class="buttons-toolbar">
-      <button mat-fab color="primary" type="submit" [disabled]="!tvShowForm.valid"
+      <button mat-raised-button color="primary" type="submit" [disabled]="!tvShowForm.valid"
               style="margin-right: 10px;" *ngIf="!update">Crear</button>
-      <button mat-fab color="primary" type="submit" [disabled]="!tvShowForm.valid"
+      <button mat-raised-button color="primary" type="submit" [disabled]="!tvShowForm.valid"
               style="margin-right: 10px;" *ngIf="update">Actualizar</button>
-      <button mat-fab color="warn" (click)="cleanTvShowForm()" style="margin-right: 10px;">Limpiar</button>
-      <button mat-fab color="warn" (click)="goListTvShows()">Cancelar</button>
+      <button mat-raised-button color="warn" (click)="cleanTvShowForm()" style="margin-right: 10px;">Limpiar</button>
+      <button mat-raised-button color="warn" (click)="goListTvShows()">Cancelar</button>
     </mat-toolbar>
   </form>
   

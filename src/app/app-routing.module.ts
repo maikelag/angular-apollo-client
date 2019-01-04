@@ -6,11 +6,13 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth/utils/auth.guard';
 import { TvShowModule } from './tv-show/tv-show.module';
 import { AuthModule } from './auth/auth.module';
+import { FullLayoutComponent } from './layout/full-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -23,7 +25,7 @@ const routes: Routes = [
         path: 'tvshows',
         loadChildren: () => TvShowModule,
         canActivate: [AuthGuard],
-      }
+      },
     ]
   },
   {
@@ -31,7 +33,6 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'tvshows', loadChildren: () =>  TvShowModule },
   {
     path: '**', component: PageNotFoundComponent
   },

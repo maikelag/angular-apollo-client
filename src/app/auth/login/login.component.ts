@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.securityService.login(this.myForm.value.username2, this.myForm.value.password2).subscribe(
       user => {
         console.log(user);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/tvshows']);
       });
   }
 

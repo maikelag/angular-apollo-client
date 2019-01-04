@@ -25,12 +25,15 @@
             "styles": [
               "src/styles.css",
               "src/assets/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/jasny-bootstrap/css/jasny-bootstrap.css"
+              "src/assets/jasny-bootstrap/css/jasny-bootstrap.css",
+              "src/assets/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": [
               "src/assets/jquery/jquery-3.1.1.min.js",
+              "src/assets/popper.js/dist/umd/popper.min.js",
               "src/assets/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/jasny-bootstrap/js/jasny-bootstrap.js"
+              "src/assets/jasny-bootstrap/js/jasny-bootstrap.js",
+              "src/assets/coreui/dist/js/coreui.min.js"
             ]
           },
           "configurations": {

@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 
 // ngrx modules
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
@@ -22,6 +23,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AllMaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthModule } from './auth/auth.module';
+import { FullLayoutComponent } from './layout/full-layout.component';
 
 import { JwtInterceptor } from './auth/utils/jwt.interceptor';
 import { ErrorInterceptor } from './auth/utils/error.interceptor';
@@ -29,7 +31,7 @@ import { TvShowModule } from './tv-show/tv-show.module';
 
 @NgModule({
   declarations: [
-    AppComponent, PageNotFoundComponent, AdminComponent
+    AppComponent, PageNotFoundComponent, AdminComponent, FullLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,9 @@ import { TvShowModule } from './tv-show/tv-show.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
     AllMaterialModule,
     BrowserAnimationsModule,
     FormsModule,

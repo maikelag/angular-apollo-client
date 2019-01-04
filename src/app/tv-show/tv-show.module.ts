@@ -5,6 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ToastrModule } from 'ngx-toastr';
 
+// NGRX Modules
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { TvShowEffect } from './state/tv-show.effects';
+import { tvShowReducer} from './state/tv-show.reducers';
+
 import { TvShowRoutingModule } from './tv-show-routing.module';
 import { TvShowListComponent } from './tv-show-list/tv-show-list.component';
 import { TvShowFormComponent } from './tv-show-form/tv-show-form.component';
@@ -21,11 +27,13 @@ import { ErrorInterceptor } from '../auth/utils/error.interceptor';
     ReactiveFormsModule,
     TvShowRoutingModule,
     HttpClientModule,
+    StoreModule.forFeature('tvShows', tvShowReducer),
+    EffectsModule.forFeature([TvShowEffect]),
     AllMaterialModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right',
-      preventDuplicates: true
+      preventDuplicates: false
     }),
   ],
   providers: [

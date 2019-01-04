@@ -3,33 +3,33 @@
     Autenticate HP
   </h2>
   <mat-divider></mat-divider>
-  <form [formGroup]="myForm" (ngSubmit)="loginUser()" novalidate>
-    <div class="row">
-      <div class="col-6">
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Username" formControlName="username2" required>
-          <mat-error *ngIf="myForm.controls['username2'].hasError('required')">
-            Nombre de Usuario <strong>requerido</strong>.
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-6">
-        <mat-form-field class="full-width">
-          <input type="password" matInput placeholder="Contraseña" formControlName="password2" required>
-          <mat-error *ngIf="myForm.controls['password2'].hasError('required')">
-            Contraseña <strong>requerida</strong>.
-          </mat-error>
-        </mat-form-field>
-      </div>
+  <div class="row">
+    <div style="margin-left: 20%; margin-right: 20%;">
+        <form class="text-center"  [formGroup]="myForm" (ngSubmit)="loginUser()" novalidate>
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field>
+                  <input matInput placeholder="Username" formControlName="username2" required>
+                  <mat-error *ngIf="myForm.controls['username2'].hasError('required')">
+                    Nombre de Usuario <strong>requerido</strong>.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field class="full-width">
+                  <input type="password" matInput placeholder="Contraseña" formControlName="password2" required>
+                  <mat-error *ngIf="myForm.controls['password2'].hasError('required')">
+                    Contraseña <strong>requerida</strong>.
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-toolbar class="buttons-toolbar">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" style="margin-right: 10px;">Enviar</button>
+            </mat-toolbar>
+          </form>
     </div>
-    <mat-toolbar class="buttons-toolbar">
-        <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid" style="margin-right: 10px;">Enviar</button>
-    </mat-toolbar>
-  </form>
+  </div>
+  
 </div>
 <mat-divider></mat-divider>
-
-<mat-toolbar>
-    <button mat-raised-button color="warn" style="margin-right: 10px;">Warn</button>
-    <button mat-raised-button color="accent" style="margin-right: 10px;">Accent</button>
-</mat-toolbar>

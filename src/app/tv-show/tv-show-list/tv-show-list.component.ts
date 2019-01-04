@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { TvShowService } from '../services/tv-show.service';
 import { TvShow } from '../models/tv-show';
 import { SelectionModel } from '@angular/cdk/collections';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -14,12 +15,13 @@ import { Router } from '@angular/router';
 })
 export class TvShowListComponent implements OnInit {
   tvShowsArray: Array<TvShow> = [];
-  displayedColumns: string[] = ['select', 'title', 'actor', 'scoring'];
+  displayedColumns: string[] = ['select', 'title', 'actor', 'scoring', 'image'];
 
   dataSource = new MatTableDataSource<TvShow>(this.tvShowsArray);
   selection = new SelectionModel<TvShow>(true, []);
 
-  constructor(private tvShowService: TvShowService, private toastr: ToastrService, private router: Router) { }
+  constructor(private tvShowService: TvShowService, private toastr: ToastrService, private router: Router,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadAllTvShow();
