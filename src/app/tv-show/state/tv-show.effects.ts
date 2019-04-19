@@ -74,10 +74,10 @@ export class TvShowEffect {
     ),
     map((action: tvShowActions.UpdateTvShow) => action.payload),
     mergeMap((tvShow: TvShow) =>
-      this.tvShowService.updateTvShow(tvShow._id, tvShow).pipe(
+      this.tvShowService.updateTvShow(tvShow.id, tvShow).pipe(
         map(
           (updatedTvShow: TvShow) => new tvShowActions.UpdateTvShowSuccess({
-            id: updatedTvShow._id,
+            id: updatedTvShow.id,
             changes: updatedTvShow
           })
         ),

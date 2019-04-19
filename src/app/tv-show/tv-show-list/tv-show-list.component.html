@@ -16,7 +16,7 @@
           </button>
         </div>
         <div class="card-block">
-          <table mat-table [dataSource]="tvShowsArray" class="mat-elevation-z8">
+          <table mat-table [dataSource]="(allTvShows$ | async)" class="mat-elevation-z8">
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
               <th mat-header-cell *matHeaderCellDef>

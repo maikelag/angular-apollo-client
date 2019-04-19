@@ -1,8 +1,12 @@
 export class TvShow {
-    _id?: string;
+    id?: string;
     title: string;
     description: string;
     scoring: number;
     actor: string;
-    image?: string;
+    image?: any;
+
+    aguacate(): string {
+        return 'Aguacate';
+    }
 }

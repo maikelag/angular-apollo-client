@@ -18,7 +18,7 @@ export interface AppState extends fromRoot.AppState {
 }
 
 export const tvShowAdapter: EntityAdapter<TvShow> = createEntityAdapter<TvShow>({
-  selectId: tvShow => tvShow._id
+  selectId: tvShow => tvShow.id
 });
 
 export const defaultTvShow: TvShowState = {
@@ -68,7 +68,7 @@ export function tvShowReducer(state = initialState, action: tvShowActions.Action
     case tvShowActions.TvShowActionTypes.LOAD_TVSHOW_SUCCESS: {
       return tvShowAdapter.addOne(action.payload, {
         ...state,
-        selectedTvShowId: action.payload._id
+        selectedTvShowId: action.payload.id
       });
     }
     case tvShowActions.TvShowActionTypes.LOAD_TVSHOW_FAIL: {

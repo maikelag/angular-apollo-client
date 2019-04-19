@@ -28,6 +28,11 @@
             </a>
           </li>
           <li>
+            <a routerLink="/raw-news">
+              <span class="fa fa-news">Noticias</span>
+            </a>
+          </li>
+          <li>
             <a
               (click)="logout()" routerLink="/auth/login" *ngIf="isLogout()">
               <span class="fa fa-sign-out"> Salir</span>
@@ -39,3 +44,5 @@
     <main><router-outlet></router-outlet></main>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+{{ flag }}

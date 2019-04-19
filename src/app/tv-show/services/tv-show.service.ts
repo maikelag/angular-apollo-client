@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, from} from 'rxjs';
+import { map, delay, filter} from 'rxjs/operators';
+import { plainToClass } from 'class-transformer';
 import { TvShow } from '../models/tv-show';
 
 const API_BASE = 'http://127.0.0.1:3000';
@@ -17,7 +19,11 @@ export class TvShowService {
   }
 
   createTvShow(newTvShow: TvShow): Observable<any> {
-    return this.http.post(`${API_BASE}/tvshows`, newTvShow);
+
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    console.log(newTvShow);
+    return this.http.post(`${API_BASE}/tvshows`, newTvShow, {headers: headers});
   }
 
   deleteTvShow(id: string): Observable<any> {

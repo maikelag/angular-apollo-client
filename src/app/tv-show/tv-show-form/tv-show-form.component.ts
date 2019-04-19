@@ -64,7 +64,7 @@ export class TvShowFormComponent implements OnInit {
   saveTvShow(tvShow: TvShow) {
     this.tvServices.createTvShow(tvShow).subscribe(response => {
       this.toastr.success(
-        response.data.title,
+        response.title,
         'Has creado correctamente la serie:'
       );
       return this.router.navigateByUrl('tvshows');
@@ -75,7 +75,7 @@ export class TvShowFormComponent implements OnInit {
     this.tvServices.updateTvShow(id, tvShow).subscribe(response => {
       this.toastr.success(
         'dddd',
-        'Has creado correctamente la serie:'
+        'Ha sido actualizada correctamente la serie:'
       );
       console.log(response);
       return this.router.navigateByUrl('tvshows');

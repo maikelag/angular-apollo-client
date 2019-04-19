@@ -1,0 +1,96 @@
+<h2>Noticias extraidas</h2>
+<select
+  id="externalSources"
+  class="custom-select"
+  (change)="getInfoOfSources()"
+>
+  <option value="" selected>Buscar por fuente externa</option>
+  <option [value]="source" *ngFor="let source of sourceArray">{{
+    source
+  }}</option>
+</select>
+
+<button
+  type="button"
+  class="btn btn-secondary"
+  data-toggle="modal"
+  data-target="#createNewsModal"
+>
+  Crear Noticia
+</button>
+
+<div class="row">
+  <div class="col-6" *ngFor="let infos of rawNews">
+    <div class="card" style="width: 35rem;">
+      <img
+        class="card-img-top"
+        src="assets/logo4.png"
+        width="20px;"
+        height="20px;"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ infos.title }}</h5>
+        <p class="card-text">{{ infos.description }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="rawNewsForm" (ngSubmit)="createNews()">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="titleInput">Titulo</label>
+        <input
+          type="text"
+          formControlName="title"
+          class="form-control"
+          id="titleInput"
+          aria-describedby="emailHelp"
+          placeholder="Titulo"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="descriptionInput">Contenido</label>
+        <textarea
+          class="form-control"
+          formControlName="description"
+          id="descriptionInput"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="authorInput">Autor</label>
+        <input
+          type="text"
+          formControlName="author"
+          class="form-control"
+          id="authorInput"
+          placeholder="Autor"
+        />
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="filePhoto">Escoja la imagen</label>
+        <input
+          type="file"
+          (change)="onFileChanged($event)"
+          #fileInput
+        />
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-secondary">Crear noticia</button>
+</form>

@@ -2,10 +2,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { TvShowService } from '../services/tv-show.service';
 import { TvShow } from '../models/tv-show';
 import { SelectionModel } from '@angular/cdk/collections';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialog} from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { Store,  State, select } from '@ngrx/store';
+import * as tvShowActions from '../state/tv-show.actions';
+import * as fromTvShow from '../state/tv-show.reducers';
 
 @Component({
   selector: 'app-tv-show-list',
@@ -17,22 +21,19 @@ export class TvShowListComponent implements OnInit {
   tvShowsArray: Array<TvShow> = [];
   displayedColumns: string[] = ['select', 'title', 'actor', 'scoring', 'image'];
 
+  allTvShows$: Observable<Array<TvShow>>;
+  error$: Observable<String>;
+
   dataSource = new MatTableDataSource<TvShow>(this.tvShowsArray);
   selection = new SelectionModel<TvShow>(true, []);
 
   constructor(private tvShowService: TvShowService, private toastr: ToastrService, private router: Router,
-              public dialog: MatDialog) { }
+              private store: Store<fromTvShow.AppState>) { }
 
   ngOnInit() {
-    this.loadAllTvShow();
-  }
-
-  loadAllTvShow() {
-    this.tvShowService.listAllTvShows().subscribe(
-      data => {
-        this.tvShowsArray = data;
-      }
-    );
+    this.store.dispatch(new tvShowActions.LoadTvShows());
+    this.allTvShows$ = this.store.pipe(select(fromTvShow.getTvShows));
+    this.error$ = this.store.pipe(select(fromTvShow.getError));
   }
 
   isAllSelected() {
@@ -51,24 +52,17 @@ export class TvShowListComponent implements OnInit {
 
   deleteManyTvShow() {
     this.selection.selected.forEach(data => {
-      this.deleteTvShow(data._id);
+      this.deleteTvShow(data.id);
     });
   }
 
   deleteTvShow(id: string) {
-    this.tvShowService.deleteTvShow(id).subscribe(
-      data => {
-        this.toastr.success(
-          data.title,
-          'Has eliminano correctamente la serie:'
-        );
-        this.loadAllTvShow();
-      }
-    );
+    this.store.dispatch(new tvShowActions.DeleteTvShow(id));
+    return this.toastr.success(id, 'Has eliminado correctamente la serie: ');
   }
 
   goToEdit() {
-    this.router.navigate(['/tvshows/create'], { queryParams: { id: this.selection.selected[0]._id, update: true } });
+    this.router.navigate(['/tvshows/create'], { queryParams: { id: this.selection.selected[0].id, update: true } });
   }
 
 }

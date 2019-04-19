@@ -18,6 +18,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RawNewsListComponent } from './raw-news/raw-news-list/raw-news-list';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
 import { AllMaterialModule } from './material.module';
@@ -31,7 +32,7 @@ import { TvShowModule } from './tv-show/tv-show.module';
 
 @NgModule({
   declarations: [
-    AppComponent, PageNotFoundComponent, AdminComponent, FullLayoutComponent
+    AppComponent, PageNotFoundComponent, AdminComponent, FullLayoutComponent, RawNewsListComponent
   ],
   imports: [
     BrowserModule,

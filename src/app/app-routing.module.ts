@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
+import { RawNewsListComponent } from './raw-news/raw-news-list/raw-news-list';
 import { AuthGuard } from './auth/utils/auth.guard';
 import { TvShowModule } from './tv-show/tv-show.module';
 import { AuthModule } from './auth/auth.module';
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'auth/login',
     pathMatch: 'full',
+  },
+  {
+    path: 'raw-news',
+    component: RawNewsListComponent
   },
   {
     path: '',
