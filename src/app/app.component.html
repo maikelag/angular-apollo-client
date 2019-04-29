@@ -1,9 +1,14 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav role="navigation">
     <mat-nav-list>
+      <a mat-list-item><span class="label">Login</span> </a>
+      <a mat-list-item (click)="cambiarLenguaje('es')">Es </a>
+      <a mat-list-item (click)="cambiarLenguaje('en')">En </a>
+      <a mat-list-item> <span class="label">Login</span> </a>
       <a mat-list-item> <span class="label">Login</span> </a>
       <a mat-list-item> <span class="label">Home</span> </a>
       <a mat-list-item> <span class="label">Dashboard</span> </a>
+
       <a mat-list-item type="button"> <span class="label">LogOut</span> </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -28,14 +33,23 @@
             </a>
           </li>
           <li>
-            <a routerLink="/raw-news">
-              <span class="fa fa-news">Noticias</span>
+            <a routerLink="/news">
+              <span class="fa fa-book">Noticias</span>
             </a>
           </li>
           <li>
-            <a
-              (click)="logout()" routerLink="/auth/login" *ngIf="isLogout()">
+            <a (click)="logout()" routerLink="/auth/login" *ngIf="isLogout()">
               <span class="fa fa-sign-out"> Salir</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="cambiarLenguaje('es')">
+              <span class="fa fa-language"> Es</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="cambiarLenguaje('en')">
+              <span class="fa fa-language"> En</span>
             </a>
           </li>
         </ul>
@@ -45,4 +59,22 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-{{ flag }}
+<button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  [disabled]="!newsForm.valid"
+  style="margin-right: 10px;"
+  *ngIf="!update"
+></button>
+
+<div
+  style="background-color: rgb(20, 12, 7)"
+  fxLayout="row wrap"
+  fxLayoutAlign="space-evenly stretch"
+  fxLayoutGap="20%"
+>
+  <button mat-raised-button fxflex="40%" style="background-color: rgb(214, 116, 58)">Aguacate</button>
+  <button mat-raised-button fxflex="80%" style="background-color: rgb(128, 47, 226)">Aguacate2</button>
+  <button mat-raised-button fxflex="10%" fxFlexAlign="end" style="background-color: rgb(130, 206, 32)">Aguacate3</button>
+</div>

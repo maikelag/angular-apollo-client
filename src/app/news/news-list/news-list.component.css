@@ -1,0 +1,20 @@
+.example-header-image {
+  background-image: url("http://127.0.0.1:3000/tv-show-1554758033531.jpg");
+  background-size: cover;
+}
+
+.img {
+  width: 100%;
+  margin-bottom: 18%;
+}
+.card-picture {
+  width: 23%;
+  margin-bottom: 2%;
+}
+.container {
+  min-height: 100%;
+  width: 100%;
+}
+.search-form {
+  width: 90%;
+}

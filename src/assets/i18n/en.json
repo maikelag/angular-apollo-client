@@ -1,0 +1,20 @@
+{
+    "principal": {
+        "texto" : "List of fruits"
+    },
+    "news": {
+        "list": {
+            "title": "News list",
+            "tableFirstHead": "Title",
+            "tableSecondHead": "Description"
+        },
+        "form": {
+            "head": "Create News",
+            "title": "Title",
+            "description": "Description",
+            "source": "Source",
+            "image": "Select Image",
+            "changeImage": "Change"
+        }
+    }
+}

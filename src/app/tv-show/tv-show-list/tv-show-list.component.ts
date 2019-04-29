@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { TvShowService } from '../services/tv-show.service';
 import { TvShow } from '../models/tv-show';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -7,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { Store,  State, select } from '@ngrx/store';
+import { Store, State, select } from '@ngrx/store';
 import * as tvShowActions from '../state/tv-show.actions';
 import * as fromTvShow from '../state/tv-show.reducers';
 
@@ -27,8 +28,15 @@ export class TvShowListComponent implements OnInit {
   dataSource = new MatTableDataSource<TvShow>(this.tvShowsArray);
   selection = new SelectionModel<TvShow>(true, []);
 
-  constructor(private tvShowService: TvShowService, private toastr: ToastrService, private router: Router,
-              private store: Store<fromTvShow.AppState>) { }
+  constructor(
+    private tvShowService: TvShowService,
+    private toastr: ToastrService,
+    private router: Router,
+    private store: Store<fromTvShow.AppState>,
+    private translate: TranslateService
+  ) {
+    translate.use('en');
+  }
 
   ngOnInit() {
     this.store.dispatch(new tvShowActions.LoadTvShows());
@@ -43,7 +51,9 @@ export class TvShowListComponent implements OnInit {
   }
 
   masterToggle() {
-    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   selectedTvShows() {
@@ -62,7 +72,8 @@ export class TvShowListComponent implements OnInit {
   }
 
   goToEdit() {
-    this.router.navigate(['/tvshows/create'], { queryParams: { id: this.selection.selected[0].id, update: true } });
+    this.router.navigate(['/tvshows/create'], {
+      queryParams: { id: this.selection.selected[0].id, update: true }
+    });
   }
-
 }

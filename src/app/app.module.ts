@@ -4,10 +4,14 @@ import { CommonModule } from '@angular/common';
 import 'hammerjs';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
+
+// Translation
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // ngrx modules
 
@@ -29,6 +33,7 @@ import { FullLayoutComponent } from './layout/full-layout.component';
 import { JwtInterceptor } from './auth/utils/jwt.interceptor';
 import { ErrorInterceptor } from './auth/utils/error.interceptor';
 import { TvShowModule } from './tv-show/tv-show.module';
+import { NewsModule } from './news/news.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,15 @@ import { TvShowModule } from './tv-show/tv-show.module';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [ HttpClient ]
+      }
+    }),
     AllMaterialModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -50,6 +64,7 @@ import { TvShowModule } from './tv-show/tv-show.module';
     MatNativeDateModule,
     FlexLayoutModule,
     TvShowModule,
+    NewsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

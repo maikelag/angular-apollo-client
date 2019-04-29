@@ -1,46 +1,79 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-    height: 100%;
-  }
-  
-  mat-sidenav {
-    width: 250px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  a:hover,
-  a:active {
-    color: lightgray;
-  }
-  
-  .navigation-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  
-  .icon {
-    display: inline-block;
-    height: 30px;
-    margin: 0 auto;
-    padding-right: 5px;
-    text-align: center;
-    vertical-align: middle;
-    width: 15%;
-  }
-  
-  .label {
-    display: inline-block;
-    line-height: 30px;
-    margin: 0;
-    width: 85%;
-  }
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
 
-  li {
-    margin-right: 40px;
-    margin-left: 10px;
-  }
+mat-sidenav {
+  width: 250px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.icon {
+  display: inline-block;
+  height: 30px;
+  margin: 0 auto;
+  padding-right: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 15%;
+}
+
+.label {
+  display: inline-block;
+  line-height: 30px;
+  margin: 0;
+  width: 85%;
+}
+
+li {
+  margin-right: 40px;
+  margin-left: 10px;
+}
+
+.contenedor {
+  font-family: "Roboto", sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.contenedor h1 {
+  text-align: center;
+  font-size: 68px;
+}
+
+.contenedor .contenedor-botones {
+  display: flex;
+  width: 500px;
+}
+
+.contenedor .contenedor-botones button {
+  outline: none;
+  margin: 10px;
+  width: 100%;
+  padding: 20px 10px;
+  border: 0px;
+  background: rgb(255, 238, 109);
+  border-radius: 30px;
+  font-size: 14px;
+}

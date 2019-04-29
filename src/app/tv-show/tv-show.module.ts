@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +18,8 @@ import { AllMaterialModule } from '../material.module';
 
 import { JwtInterceptor } from '../auth/utils/jwt.interceptor';
 import { ErrorInterceptor } from '../auth/utils/error.interceptor';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [TvShowListComponent, TvShowFormComponent],
@@ -34,6 +36,15 @@ import { ErrorInterceptor } from '../auth/utils/error.interceptor';
       timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: false
+    }),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => {
+          return new TranslateHttpLoader(http);
+        },
+        deps: [ HttpClient ]
+      }
     }),
   ],
   providers: [

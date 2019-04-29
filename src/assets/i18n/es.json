@@ -1,0 +1,21 @@
+{
+    "principal": {
+        "texto" : "Lista de frutas"
+    },
+    "news": {
+        "list": {
+            "title": "Listado de noticias",
+            "tableFirstHead": "Titulo",
+            "tableSecondHead": "Descripcion"
+        },
+        "form": {
+            "head": "Crear noticias",
+            "title": "Titulo",
+            "description": "Descripcion",
+            "source": "Fuente",
+            "image": "Seleccionar Imagen",
+            "changeImage": "Cambiar"
+        }
+    }
+    
+}
