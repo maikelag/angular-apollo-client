@@ -11,21 +11,24 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { newsReducer } from './state/news.reducers';
+import { commentReducer } from './state/comment.reducers';
 import { NewsEffect } from './state/news.effects';
+import { CommentEffects } from './state/comment.effects';
 
 import { AllMaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { NewsDetailComponent, DialogOverviewExampleDialog} from './news-detail/news-detail.component';
 
 @NgModule({
-  declarations: [NewsListComponent, NewsFormComponent, NewsDetailComponent],
+  declarations: [NewsListComponent, NewsFormComponent, NewsDetailComponent, DialogOverviewExampleDialog],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NewsRoutingModule,
     StoreModule.forFeature('news', newsReducer),
-    EffectsModule.forFeature([NewsEffect]),
+    StoreModule.forFeature('comment', commentReducer),
+    EffectsModule.forFeature([NewsEffect, CommentEffects]),
     AllMaterialModule,
     FlexLayoutModule,
     ToastrModule.forRoot({
@@ -39,9 +42,10 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
         useFactory: (http: HttpClient) => {
           return new TranslateHttpLoader(http);
         },
-        deps: [ HttpClient ]
+        deps: [HttpClient]
       }
-    }),
-  ]
+    })
+  ],
+  entryComponents: [ NewsDetailComponent, DialogOverviewExampleDialog]
 })
-export class NewsModule { }
+export class NewsModule {}

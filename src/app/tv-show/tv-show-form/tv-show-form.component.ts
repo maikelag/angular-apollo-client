@@ -77,7 +77,6 @@ export class TvShowFormComponent implements OnInit {
         'dddd',
         'Ha sido actualizada correctamente la serie:'
       );
-      console.log(response);
       return this.router.navigateByUrl('tvshows');
     });
   }

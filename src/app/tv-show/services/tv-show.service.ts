@@ -22,7 +22,6 @@ export class TvShowService {
 
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    console.log(newTvShow);
     return this.http.post(`${API_BASE}/tvshows`, newTvShow, {headers: headers});
   }
 

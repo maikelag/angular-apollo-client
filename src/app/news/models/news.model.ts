@@ -12,8 +12,8 @@ export class News {
   category: string;
   source: string;
   author: User;
-  comments: Comment[];
-  voteNews: VoteNews[];
+  comments: Comment[] | number;
+  voteNews: VoteNews[] | object;
 
   constructor() {}
 

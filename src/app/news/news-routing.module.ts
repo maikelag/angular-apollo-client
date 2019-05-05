@@ -10,13 +10,13 @@ const routes: Routes = [
     component: NewsListComponent
   },
   {
+    path: 'create',
+    component: NewsFormComponent
+  },
+  {
     path: ':id',
     component: NewsDetailComponent
   },
-  {
-    path: 'create',
-    component: NewsFormComponent
-  }
 ];
 
 @NgModule({

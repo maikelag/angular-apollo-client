@@ -69,6 +69,5 @@ export class RawNewsListComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.rawNewsForm.patchValue({image: this.selectedFile});
-    console.log('Image: ', this.selectedFile);
   }
 }

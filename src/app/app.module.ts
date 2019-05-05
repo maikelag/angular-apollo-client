@@ -64,7 +64,8 @@ import { NewsModule } from './news/news.module';
     MatNativeDateModule,
     FlexLayoutModule,
     TvShowModule,
-    NewsModule
+    NewsModule,
+    ,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

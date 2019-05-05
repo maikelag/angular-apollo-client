@@ -8,8 +8,8 @@ export class Comment {
   createdAt: Date;
   news: News;
   author: User;
-  voteComment: VoteComment;
-  fatherComment: Comment;
+  voteComment: VoteComment | any;
+  fatherComment: Comment | number;
 
   constructor() {}
 

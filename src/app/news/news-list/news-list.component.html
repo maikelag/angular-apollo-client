@@ -31,26 +31,45 @@
   >
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <a [routerLink]="[ '/news/', item.id ]"><mat-card-title >{{ item.title }}</mat-card-title></a>
+      <a [routerLink]="['/news/', item.id]"
+        ><mat-card-title>{{ item.title }}</mat-card-title></a
+      >
       <p>{{ item.createdAt | date: "short" }}</p>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <p>
-        {{ item.description }}
+      <p *ngIf="item.description.length > 500; else elseTemplate">
+        {{item.description.slice(0, 500) + "..."}}
       </p>
+      <ng-template #elseTemplate>
+        <p>
+          {{ item.description }}
+        </p>
+      </ng-template>
     </mat-card-content>
     <mat-divider></mat-divider>
     <div fxLayout="row" fxLayoutAlign="start none">
       <mat-card-actions>
-        <button mat-button><i class="fa fa-trash-alt" (click)="deleteNews(item.id)"> Eliminar</i></button>
-        <button mat-button><i class="fa fa-thumbs-up"> 3</i></button>
-        <button mat-button>
-          <i class="fa fa-thumbs-down"> 4</i>
+        <button mat-button fxFlex="15%">
+          <i class="fa fa-trash-alt" (click)="deleteNews(item.id)"> Eliminar</i>
         </button>
-        <button mat-button fxFlexOffset="50%">
-          <i class="fa fa-comments"> 3</i>
+        <button mat-button fxFlex="15%">
+          <i class="fa fa-thumbs-up" (click)="voteNews('Positivo', item.id)">
+            {{ item.voteNews.positivos }}</i
+          >
         </button>
+        <button mat-button fxFlex="15%">
+          <i class="fa fa-thumbs-down" (click)="voteNews('Negativo', item.id)">
+            {{ item.voteNews.negativos }}</i
+          >
+        </button>
+        <div style="background-color: chartreuse;" fxFlexAlign="end end">
+          <button mat-button>
+            <i class="fa fa-comments" (click)="gotoNews(item.id)">
+              {{ item.comments }}</i
+            >
+          </button>
+        </div>
       </mat-card-actions>
     </div>
   </mat-card>

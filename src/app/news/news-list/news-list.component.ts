@@ -7,6 +7,7 @@ import { Store, State, select } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import * as newsActions from '../state/news.actions';
 import * as fromNews from '../state/news.reducers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-news-list',
@@ -23,6 +24,7 @@ export class NewsListComponent implements OnInit {
     private newsServices: NewsService,
     private store: Store<fromNews.AppState>,
     private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -37,13 +39,40 @@ export class NewsListComponent implements OnInit {
   deleteNews(id) {
     this.newsServices.deleteNews(id).subscribe(
       newsDeleted => {
+        alert(newsDeleted);
         this.store.dispatch(new newsActions.LoadNews());
         this.allNews$ = this.store.pipe(select(fromNews.getNews));
-        this.toastr.success(newsDeleted.title, 'Has eliminado correctamente la noticia: ');
+        this.toastr.success('Se ha eliminado correctamente la noticia');
       },
       error => {
-        this.toastr.error('ERROR', 'Ha ocurrido un error al eliminar la noticia ');
+        this.toastr.error(
+          'ERROR',
+          'Ha ocurrido un error al eliminar la noticia '
+        );
       }
-    )
+    );
+  }
+
+  voteNews(vote: string, idNews: number) {
+    if (!localStorage.getItem('id_token')) {
+      return this.isAuth();
+    }
+    this.newsServices.voteNews(vote, idNews).subscribe(res => {
+      this.store.dispatch(new newsActions.LoadNews());
+      this.allNews$ = this.store.pipe(select(fromNews.getNews));
+      this.error$ = this.store.pipe(select(fromNews.getError));
+    });
+  }
+
+  gotoNews(idNews: number) {
+    this.router.navigate(['/news/' + idNews]);
+  }
+
+  isAuth() {
+    this.toastr.warning(
+      'INFO',
+      'Necesita estar autenticado para utilizar esta función'
+    );
+    this.router.navigate(['/auth/login']);
   }
 }

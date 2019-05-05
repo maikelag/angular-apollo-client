@@ -27,9 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.securityService.login(this.myForm.value.username2, this.myForm.value.password2).subscribe(
+    this.securityService.login({username: this.myForm.value.username2, password: this.myForm.value.password2}).subscribe(
       user => {
-        console.log(user);
         this.router.navigate(['/tvshows']);
       });
   }

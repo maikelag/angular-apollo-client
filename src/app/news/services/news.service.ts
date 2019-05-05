@@ -29,4 +29,20 @@ export class NewsService {
   deleteNews(id: number): Observable<any> {
     return this.http.delete(`${API_BASE}/news/${id}`);
   }
+
+  voteNews(vote: string, idNews: number): Observable<any> {
+    return this.http.post(`${API_BASE}/news/${idNews}`, { vote: vote });
+  }
+
+  commentOfNews(idNews: number): Observable<any> {
+    return this.http.get(`${API_BASE}/comments/news/${idNews}`);
+  }
+
+  voteComment(vote: string, idComment: number): Observable<any> {
+    return this.http.post(`${API_BASE}/comments/${idComment}`, { vote: vote });
+  }
+
+  commentNews(comment, newsId) {
+    return this.http.post(`${API_BASE}/comments/news/${newsId}`, comment);
+  }
 }

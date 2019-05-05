@@ -1,80 +1,108 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav role="navigation">
-    <mat-nav-list>
-      <a mat-list-item><span class="label">Login</span> </a>
-      <a mat-list-item (click)="cambiarLenguaje('es')">Es </a>
-      <a mat-list-item (click)="cambiarLenguaje('en')">En </a>
-      <a mat-list-item> <span class="label">Login</span> </a>
-      <a mat-list-item> <span class="label">Login</span> </a>
-      <a mat-list-item> <span class="label">Home</span> </a>
-      <a mat-list-item> <span class="label">Dashboard</span> </a>
 
-      <a mat-list-item type="button"> <span class="label">LogOut</span> </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div fxHide.gt-xs><button mat-icon-button></button></div>
-      <div>
-        <a routerLink="/admin">
-          <img src="/assets/logo3.png" alt="TVC+" width="35%" />
-        </a>
-      </div>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-          <li *ngIf="!isLogout()">
-            <a routerLinkActive="active" routerLink="/auth/login">
-              <span class="fa fa-sign-in">Autenticarse</span>
-            </a>
-          </li>
-          <li *ngIf="isLogout()">
-            <a routerLinkActive="active" routerLink="/tvshows">
-              <span class="fa fa-television">Series de TV</span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="/news">
-              <span class="fa fa-book">Noticias</span>
-            </a>
-          </li>
-          <li>
-            <a (click)="logout()" routerLink="/auth/login" *ngIf="isLogout()">
-              <span class="fa fa-sign-out"> Salir</span>
-            </a>
-          </li>
-          <li>
-            <a (click)="cambiarLenguaje('es')">
-              <span class="fa fa-language"> Es</span>
-            </a>
-          </li>
-          <li>
-            <a (click)="cambiarLenguaje('en')">
-              <span class="fa fa-language"> En</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </mat-toolbar>
-    <main><router-outlet></router-outlet></main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div fxLayout="column" fxFlexFill>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <div fxHide.gt-xs><button mat-icon-button></button></div>
+        <div>
+          <a routerLink="/admin">
+            <img src="/assets/logo3.png" alt="TVC+" width="35%" />
+          </a>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+          <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+            <li *ngIf="!isLogout()">
+              <a routerLinkActive="active" routerLink="/auth/login">
+                <span class="fa fa-sign-in">Autenticarse</span>
+              </a>
+            </li>
+            <li *ngIf="isLogout()">
+              <a routerLinkActive="active" routerLink="/tvshows">
+                <span class="fa fa-television">Series de TV</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/news">
+                <span class="fa fa-book">Noticias</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="logout()" routerLink="/auth/login" *ngIf="isLogout()">
+                <span class="fa fa-sign-out"> Salir</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="cambiarLenguaje('es')">
+                <span class="fa fa-language"> Es</span>
+              </a>
+            </li>
+            <li>
+              <a (click)="cambiarLenguaje('en')">
+                <span class="fa fa-language"> En</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </mat-toolbar>
+      <main><router-outlet></router-outlet></main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
-<button
-  mat-raised-button
-  color="primary"
-  type="submit"
-  [disabled]="!newsForm.valid"
-  style="margin-right: 10px;"
-  *ngIf="!update"
-></button>
-
-<div
-  style="background-color: rgb(20, 12, 7)"
-  fxLayout="row wrap"
-  fxLayoutAlign="space-evenly stretch"
-  fxLayoutGap="20%"
->
-  <button mat-raised-button fxflex="40%" style="background-color: rgb(214, 116, 58)">Aguacate</button>
-  <button mat-raised-button fxflex="80%" style="background-color: rgb(128, 47, 226)">Aguacate2</button>
-  <button mat-raised-button fxflex="10%" fxFlexAlign="end" style="background-color: rgb(130, 206, 32)">Aguacate3</button>
+  <footer fxLayout="column" fxFlex>
+    <div fxLayout="row">
+      <hr fxFlex="100">
+    </div>
+    <p>Amadors Corporation Record</p>
+  </footer>
+  
+  <div *ngIf="false"
+    style="background-color: rgb(20, 12, 7)"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-evenly stretch"
+    fxLayoutGap="20%"
+  >
+    <p
+      fxflex="40%"
+      style="background-color: rgb(214, 116, 58)"
+    >
+      El término software libre se 
+  </p>
+    <p
+      fxflex="40%"
+      style="background-color: rgb(128, 47, 226)"
+    >
+      El término software libre se refiere al conjunto de software (programa
+      informático) que por elección manifiesta de: Su autor, puede ser copiado,
+      estudiado, modificado, utilizado libremente con cualquier fin y
+      redistribuido con o sin cambios o mejoras.[1][2] Su definición está asociada
+      al nacimiento del movimiento de software libre, encabezado por Richard
+      Stallman y la consecuente fundación en 1985 de la Free Software Foundation,
+      que coloca la libertad del usuario informático como propósito ético[3]
+      fundamental. Proviene del término en inglés free software, que presenta
+      ambigüedad entre los significados «libre» y «gratis» asociados a la palabra
+      free. Por esto que suele ser considerado como software gratuito y no en su
+      acepción más precisa como software que puede ser modificado sin
+      restricciones de licencia.
+    </p>
+    <p
+      fxflex="50%"
+      fxFlexAlign="end"
+      style="background-color: rgb(130, 206, 32)"
+    >
+      El término software libre se refiere al conjunto de software (programa
+      informático) que por elección manifiesta de: Su autor, puede ser copiado,
+      estudiado, modificado, utilizado libremente con cualquier fin y
+      redistribuido con o sin cambios o mejoras.[1][2] Su definición está asociada
+      al nacimiento del movimiento de software libre, encabezado por Richard
+      Stallman y la consecuente fundación en 1985 de la Free Software Foundation,
+      que coloca la libertad del usuario informático como propósito ético[3]
+      fundamental. Proviene del término en inglés free software, que presenta
+      ambigüedad entre los significados «libre» y «gratis» asociados a la palabra
+      free. Por esto que suele ser considerado como software gratuito y no en su
+      acepción más precisa como software que puede ser modificado sin
+      restricciones de licencia.
+    </p>
+  </div>
 </div>
+
+

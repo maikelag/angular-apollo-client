@@ -10,11 +10,10 @@ export class SecurityService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post('http://127.0.0.1:3000/users/login', {username, password})
+  login(userDTO: any): Observable<any> {
+    return this.http.post('http://127.0.0.1:3000/users/login', {username: userDTO.username, password: userDTO.password})
       .pipe(map((user: any) => {
         if (user) {
-          console.log(user);
           localStorage.setItem('id_token', user.token);
         }
       }));
@@ -22,6 +21,14 @@ export class SecurityService {
 
   logout() {
     localStorage.removeItem('id_token');
+  }
+
+  whoIAm(): Observable<any> {
+    return this.http.get('http://127.0.0.1:3000/users/whoiam');
+  }
+
+  register(userDTO: any) {
+    return this.http.post('http://127.0.0.1:3000/users/register', {username: userDTO.username, password: userDTO.password});
   }
 
 }
