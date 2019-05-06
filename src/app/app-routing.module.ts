@@ -6,8 +6,8 @@ import { AdminComponent } from './admin/admin.component';
 import { RawNewsListComponent } from './raw-news/raw-news-list/raw-news-list';
 import { AuthGuard } from './auth/utils/auth.guard';
 import { TvShowModule } from './tv-show/tv-show.module';
-import { AuthModule } from './auth/auth.module';
 import { NewsModule } from './news/news.module';
+import { AuthModule } from './auth/auth.module';
 import { FullLayoutComponent } from './layout/full-layout.component';
 
 const routes: Routes = [

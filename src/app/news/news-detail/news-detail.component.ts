@@ -9,9 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import * as newsActions from '../state/news.actions';
 import * as fromNews from '../state/news.reducers';
 
-import * as commentsActions from '../state/comment.actions';
-import * as fromComments from '../state/comment.reducers';
-
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
 import { EventEmitter } from 'protractor';
@@ -44,8 +41,6 @@ export class NewsDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.newsServices.findOneNews(params.id).subscribe(news => {
         this.newsDetail = news;
-        this.store.dispatch(new commentsActions.LoadComments(this.newsDetail.id));
-        this.allComments$ = this.store.pipe(select(fromComments.getComments));
       });
       this.newsServices.commentOfNews(params.id).subscribe(comments => {
         this.commentsArray = comments;

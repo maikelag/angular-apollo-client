@@ -65,7 +65,6 @@ import { NewsModule } from './news/news.module';
     FlexLayoutModule,
     TvShowModule,
     NewsModule,
-    ,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

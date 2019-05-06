@@ -11,9 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { newsReducer } from './state/news.reducers';
-import { commentReducer } from './state/comment.reducers';
 import { NewsEffect } from './state/news.effects';
-import { CommentEffects } from './state/comment.effects';
 
 import { AllMaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,8 +25,7 @@ import { NewsDetailComponent, DialogOverviewExampleDialog} from './news-detail/n
     ReactiveFormsModule,
     NewsRoutingModule,
     StoreModule.forFeature('news', newsReducer),
-    StoreModule.forFeature('comment', commentReducer),
-    EffectsModule.forFeature([NewsEffect, CommentEffects]),
+    EffectsModule.forFeature([NewsEffect]),
     AllMaterialModule,
     FlexLayoutModule,
     ToastrModule.forRoot({
