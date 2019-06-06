@@ -48,4 +48,10 @@ html, body {
   font-feature-settings: "liga";
 }
 
+.snackbar-success {
+  color: hotpink;
+}
 
+.snackbar-error {
+  color: red;
+}

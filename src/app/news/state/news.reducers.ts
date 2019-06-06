@@ -102,6 +102,16 @@ export function newsReducer(
       };
     }
 
+    case newsActions.NewsActionTypes.VOTE_NEWS: {
+      return {
+        ...state
+      };
+    }
+
+    case newsActions.NewsActionTypes.VOTE_NEWS_SUCCESS: {
+      return newsAdapter.upsertOne(action.payload, state);
+    }
+
     default: {
       return state;
     }

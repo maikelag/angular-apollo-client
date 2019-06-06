@@ -13,19 +13,29 @@ export class News {
   source: string;
   author: User;
   comments: Comment[] | number;
-  voteNews: VoteNews[] | object;
+  voteNews: VoteNews[] | any;
 
   constructor() {}
 
   get votePositive(): number {
-    return 2;
+    return 587;
   }
 
   get voteNegative(): number {
-    return 2;
+    let total = 0;
+    this.voteNews.forEach((element: VoteNews) => {
+      if (element.vote === 'negativos') {
+        total++;
+      }
+    });
+    return total;
   }
 
   get createdDateFormat() {
     return '25 de diciembre';
+  }
+
+  aguacate() {
+    return 'Aguacate verde';
   }
 }

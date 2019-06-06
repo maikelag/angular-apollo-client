@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NewsRoutingModule } from './news-routing.module';
-import { NewsListComponent } from './news-list/news-list.component';
+import {
+  NewsListComponent,
+  SnackBarVoteComponent
+} from './news-list/news-list.component';
 import { NewsFormComponent } from './news-form/news-form.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
@@ -15,17 +18,31 @@ import { NewsEffect } from './state/news.effects';
 
 import { AllMaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NewsDetailComponent, DialogOverviewExampleDialog} from './news-detail/news-detail.component';
+import {
+  NewsDetailComponent,
+  DialogOverviewExampleDialog
+} from './news-detail/news-detail.component';
+import { commentReducer } from './state/comment.reducers';
+import { CommentEffect } from './state/comment.effects';
+
+import { NewsGraphqlService } from './graphql-services/news.graphql.service'
 
 @NgModule({
-  declarations: [NewsListComponent, NewsFormComponent, NewsDetailComponent, DialogOverviewExampleDialog],
+  declarations: [
+    NewsListComponent,
+    NewsFormComponent,
+    NewsDetailComponent,
+    DialogOverviewExampleDialog,
+    SnackBarVoteComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     NewsRoutingModule,
     StoreModule.forFeature('news', newsReducer),
-    EffectsModule.forFeature([NewsEffect]),
+    StoreModule.forFeature('comment', commentReducer),
+    EffectsModule.forFeature([NewsEffect, CommentEffect]),
     AllMaterialModule,
     FlexLayoutModule,
     ToastrModule.forRoot({
@@ -43,6 +60,12 @@ import { NewsDetailComponent, DialogOverviewExampleDialog} from './news-detail/n
       }
     })
   ],
-  entryComponents: [ NewsDetailComponent, DialogOverviewExampleDialog]
+  entryComponents: [
+    NewsDetailComponent,
+    DialogOverviewExampleDialog,
+    NewsListComponent,
+    SnackBarVoteComponent
+  ],
+  providers: [NewsGraphqlService]
 })
 export class NewsModule {}

@@ -9,6 +9,7 @@ import { plainToClass } from 'class-transformer';
 import { ToastrService } from 'ngx-toastr';
 import { News } from '../models/news.model';
 import { NewsService } from '../services/news.service';
+import { NewsGraphqlService } from '../graphql-services/news.graphql.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $: any;
@@ -28,6 +29,7 @@ export class NewsFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private newsServices: NewsService,
+    private newsGraphqlService: NewsGraphqlService,
     private toastr: ToastrService
   ) {}
 
@@ -45,9 +47,12 @@ export class NewsFormComponent implements OnInit {
   }
 
   saveNews(news: News) {
-    this.newsServices.createNews(news).subscribe(response => {
-      this.toastr.success(response.title, 'Has creado correctamente la serie:');
+    this.newsGraphqlService.createNews(news).subscribe(response => {
+      console.log('RESPONSE', response);
+      this.toastr.success(response.newsAdd.title, 'Has creado correctamente la serie:');
       return this.router.navigateByUrl('news');
+    }, error => {
+      this.toastr.error(error, 'Ha ocurrido un error');
     });
   }
 

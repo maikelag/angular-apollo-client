@@ -13,7 +13,7 @@
 <mat-card
   class="card-picture"
   fxLayout="column"
-  *ngFor="let item of commentsArray"
+  *ngFor="let item of (allComments$ | async)"
   style="margin-bottom: 20px"
 >
 <mat-card-header *ngIf="item.fatherComment">

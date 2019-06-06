@@ -7,7 +7,9 @@ import { News } from '../models/news.model';
 import { Store, State, select } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import * as newsActions from '../state/news.actions';
+import * as commentActions from '../state/comment.actions';
 import * as fromNews from '../state/news.reducers';
+import * as fromComment from '../state/comment.reducers';
 
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Observable } from 'rxjs';
@@ -41,6 +43,8 @@ export class NewsDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.newsServices.findOneNews(params.id).subscribe(news => {
         this.newsDetail = news;
+        this.store.dispatch(new commentActions.LoadComments(params.id));
+        this.allComments$ = this.store.pipe(select(fromComment.getComments));
       });
       this.newsServices.commentOfNews(params.id).subscribe(comments => {
         this.commentsArray = comments;
@@ -52,15 +56,13 @@ export class NewsDetailComponent implements OnInit {
     if (!localStorage.getItem('id_token')) {
       return this.isAuth();
     }
-    this.newsServices.voteComment(vote, idComment).subscribe(res => {
-      alert('Voto aceptado HP');
-    });
+    this.store.dispatch(new commentActions.VoteComment({vote, idComment}));
   }
 
   isAuth() {
     this.toastr.warning(
       'INFO',
-      'Necesita estar autenticado para utilizar esta función'
+      'Necesita estar autenticado para realizar esa función'
     );
     this.router.navigate(['/auth/login']);
   }

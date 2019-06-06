@@ -2,11 +2,13 @@
     "principal": {
         "texto" : "Lista de frutas"
     },
+
     "news": {
         "list": {
             "title": "Listado de noticias",
             "tableFirstHead": "Titulo",
-            "tableSecondHead": "Descripcion"
+            "tableSecondHead": "Descripcion",
+            "voteSuccess": "Voto recibido correctamente"
         },
         "form": {
             "head": "Crear noticias",
@@ -16,6 +18,19 @@
             "image": "Seleccionar Imagen",
             "changeImage": "Cambiar"
         }
-    }
+    },
+
+    "comments": {
+
+    },
+
+    "security": {
+        "roles": {
+            "title": "Gestión de Roles"
+        },
+        "users": {}
+    },
+
+    "error": "Ha ocurrido un error"
     
 }

@@ -9,6 +9,7 @@ import { TvShowModule } from './tv-show/tv-show.module';
 import { NewsModule } from './news/news.module';
 import { AuthModule } from './auth/auth.module';
 import { FullLayoutComponent } from './layout/full-layout.component';
+import { MycounterComponent } from './mycounter/mycounter.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'counter',
+    component: MycounterComponent,
   },
   {
     path: '**', component: PageNotFoundComponent

@@ -1,4 +1,3 @@
-
 <div fxLayout="column" fxFlexFill>
   <mat-sidenav-container>
     <mat-sidenav-content>
@@ -19,6 +18,16 @@
             <li *ngIf="isLogout()">
               <a routerLinkActive="active" routerLink="/tvshows">
                 <span class="fa fa-television">Series de TV</span>
+              </a>
+            </li>
+            <li *ngIf="isLogout()">
+              <a routerLink="/auth/roles">
+                <span class="fa fa-television">Role</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/auth/users">
+                <span class="fa fa-television">Usuarios</span>
               </a>
             </li>
             <li>
@@ -50,38 +59,33 @@
 
   <footer fxLayout="column" fxFlex>
     <div fxLayout="row">
-      <hr fxFlex="100">
+      <hr fxFlex="100" />
     </div>
     <p>Amadors Corporation Record</p>
   </footer>
-  
-  <div *ngIf="false"
+
+  <div
+    *ngIf="false"
     style="background-color: rgb(20, 12, 7)"
     fxLayout="row wrap"
     fxLayoutAlign="space-evenly stretch"
     fxLayoutGap="20%"
   >
-    <p
-      fxflex="40%"
-      style="background-color: rgb(214, 116, 58)"
-    >
-      El término software libre se 
-  </p>
-    <p
-      fxflex="40%"
-      style="background-color: rgb(128, 47, 226)"
-    >
+    <p fxflex="40%" style="background-color: rgb(214, 116, 58)">
+      El término software libre se
+    </p>
+    <p fxflex="40%" style="background-color: rgb(128, 47, 226)">
       El término software libre se refiere al conjunto de software (programa
       informático) que por elección manifiesta de: Su autor, puede ser copiado,
       estudiado, modificado, utilizado libremente con cualquier fin y
-      redistribuido con o sin cambios o mejoras.[1][2] Su definición está asociada
-      al nacimiento del movimiento de software libre, encabezado por Richard
-      Stallman y la consecuente fundación en 1985 de la Free Software Foundation,
-      que coloca la libertad del usuario informático como propósito ético[3]
-      fundamental. Proviene del término en inglés free software, que presenta
-      ambigüedad entre los significados «libre» y «gratis» asociados a la palabra
-      free. Por esto que suele ser considerado como software gratuito y no en su
-      acepción más precisa como software que puede ser modificado sin
+      redistribuido con o sin cambios o mejoras.[1][2] Su definición está
+      asociada al nacimiento del movimiento de software libre, encabezado por
+      Richard Stallman y la consecuente fundación en 1985 de la Free Software
+      Foundation, que coloca la libertad del usuario informático como propósito
+      ético[3] fundamental. Proviene del término en inglés free software, que
+      presenta ambigüedad entre los significados «libre» y «gratis» asociados a
+      la palabra free. Por esto que suele ser considerado como software gratuito
+      y no en su acepción más precisa como software que puede ser modificado sin
       restricciones de licencia.
     </p>
     <p
@@ -92,17 +96,15 @@
       El término software libre se refiere al conjunto de software (programa
       informático) que por elección manifiesta de: Su autor, puede ser copiado,
       estudiado, modificado, utilizado libremente con cualquier fin y
-      redistribuido con o sin cambios o mejoras.[1][2] Su definición está asociada
-      al nacimiento del movimiento de software libre, encabezado por Richard
-      Stallman y la consecuente fundación en 1985 de la Free Software Foundation,
-      que coloca la libertad del usuario informático como propósito ético[3]
-      fundamental. Proviene del término en inglés free software, que presenta
-      ambigüedad entre los significados «libre» y «gratis» asociados a la palabra
-      free. Por esto que suele ser considerado como software gratuito y no en su
-      acepción más precisa como software que puede ser modificado sin
+      redistribuido con o sin cambios o mejoras.[1][2] Su definición está
+      asociada al nacimiento del movimiento de software libre, encabezado por
+      Richard Stallman y la consecuente fundación en 1985 de la Free Software
+      Foundation, que coloca la libertad del usuario informático como propósito
+      ético[3] fundamental. Proviene del término en inglés free software, que
+      presenta ambigüedad entre los significados «libre» y «gratis» asociados a
+      la palabra free. Por esto que suele ser considerado como software gratuito
+      y no en su acepción más precisa como software que puede ser modificado sin
       restricciones de licencia.
     </p>
   </div>
 </div>
-
-

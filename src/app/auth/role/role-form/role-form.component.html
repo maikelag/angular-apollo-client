@@ -1,0 +1,62 @@
+<h5>
+  Crear role
+</h5>
+
+<mat-divider></mat-divider>
+  
+<form [formGroup]="roleForm" (ngSubmit)="sendRole2()" novalidate class="text-center">
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="full-width example-form">
+        <input matInput placeholder="Nombre del role" formControlName="role" required>
+        <mat-error *ngIf="roleForm.controls['role'].hasError('required')">
+          Nombre del role <strong>requerido</strong>.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <p>Seleccione los permisos del rol</p>
+      <div class="card-block">
+        <table mat-table [dataSource]="permissionsList" class="example-container mat-elevation-z8">
+          
+          <ng-container matColumnDef="selectPerm">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selectionPerm.hasValue() && isAllSelected()"
+                            [indeterminate]="selectionPerm.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selectionPerm.toggle(row) : null"
+                            [checked]="selectionPerm.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="permission">
+            <th mat-header-cell *matHeaderCellDef>Permisos</th>
+            <td mat-cell *matCellDef="let element">{{ element.permission }}</td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="selectionPerm.toggle(row)"
+          ></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <mat-toolbar class="buttons-toolbar">
+    <button mat-raised-button color="primary" (click)="sendRole()" [disabled]="!roleForm.valid"
+            style="margin-right: 10px;" *ngIf="!update">Crear</button>
+    <button mat-raised-button color="primary" (click)="sendRole()"  [disabled]="!roleForm.valid"
+            style="margin-right: 10px;" *ngIf="update">Actualizar</button>
+    <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+  </mat-toolbar>
+</form>

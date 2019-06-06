@@ -9,6 +9,8 @@ import {MatNativeDateModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {environment} from '../environments/environment';
 
+import { ToastrModule } from 'ngx-toastr';
+
 // Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -35,9 +37,18 @@ import { ErrorInterceptor } from './auth/utils/error.interceptor';
 import { TvShowModule } from './tv-show/tv-show.module';
 import { NewsModule } from './news/news.module';
 
+import { counterReducer } from './state/counter.reducers';
+import { errorReducer } from './state/error.reducers';
+import { MycounterComponent } from './mycounter/mycounter.component';
+
+import { snackBarReducer } from './shared/state/snack-bar.reducers';
+import { SnackbarEffects } from './shared/state/snack-bar.effects';
+import { ErrorEffects } from './shared/state/error.effects';
+import { GraphQLModule } from './graphql/graphql.module';
+
 @NgModule({
   declarations: [
-    AppComponent, PageNotFoundComponent, AdminComponent, FullLayoutComponent, RawNewsListComponent
+    AppComponent, PageNotFoundComponent, AdminComponent, FullLayoutComponent, RawNewsListComponent, MycounterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +56,10 @@ import { NewsModule } from './news/news.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    StoreModule.forRoot({}),
+    GraphQLModule,
+    StoreModule.forRoot({count: counterReducer, errors: errorReducer, snackbar: snackBarReducer}),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([SnackbarEffects, ErrorEffects]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -56,6 +68,11 @@ import { NewsModule } from './news/news.module';
         },
         deps: [ HttpClient ]
       }
+    }),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
     }),
     AllMaterialModule,
     BrowserAnimationsModule,

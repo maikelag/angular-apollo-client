@@ -1,13 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../services/news.service';
+import { NewsGraphqlService } from '../graphql-services/news.graphql.service';
 import { News } from '../models/news.model';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 import { Store, State, select } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import * as newsActions from '../state/news.actions';
 import * as fromNews from '../state/news.reducers';
 import { Router } from '@angular/router';
+
+@Component({
+  selector: 'snack-bar-votecomponent--snack',
+  templateUrl: 'snack-bar-vote.component.html',
+  styles: [`
+    .example-pizza-party {
+      color: black;
+    }
+  `],
+})
+export class SnackBarVoteComponent {
+  message = 'Voto recibido';
+}
+
 
 @Component({
   selector: 'app-news-list',
@@ -22,21 +38,33 @@ export class NewsListComponent implements OnInit {
 
   constructor(
     private newsServices: NewsService,
+    private newsGraphqlService: NewsGraphqlService,
     private store: Store<fromNews.AppState>,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    this.loadNewsFromGraphql();
     this.newsServices.listAllNews().subscribe(news => {
       this.newsArray = news;
     });
+    console.log(this.store);
     this.store.dispatch(new newsActions.LoadNews());
     this.allNews$ = this.store.pipe(select(fromNews.getNews));
     this.error$ = this.store.pipe(select(fromNews.getError));
   }
 
+
+  loadNewsFromGraphql() {
+    this.newsGraphqlService.listAllNews().subscribe(data => {
+      console.log('DatosGrapqhl', data);
+    })
+  }
+
   deleteNews(id) {
+    console.log('ID Eliminar', id);
     this.newsServices.deleteNews(id).subscribe(
       newsDeleted => {
         alert(newsDeleted);
@@ -57,11 +85,19 @@ export class NewsListComponent implements OnInit {
     if (!localStorage.getItem('id_token')) {
       return this.isAuth();
     }
-    this.newsServices.voteNews(vote, idNews).subscribe(res => {
-      this.store.dispatch(new newsActions.LoadNews());
-      this.allNews$ = this.store.pipe(select(fromNews.getNews));
-      this.error$ = this.store.pipe(select(fromNews.getError));
+    this.store.dispatch(new newsActions.VoteNews({vote, idNews}));
+  }
+
+  openSnackBar() {
+    this.snackBar.openFromComponent(SnackBarVoteComponent, {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'end',
     });
+  }
+
+  voteNewsNGRX(vote: string, idNews: number) {
+    this.store.dispatch(new newsActions.VoteNews({vote, idNews}));
   }
 
   gotoNews(idNews: number) {

@@ -1,0 +1,63 @@
+<h5>
+  Crear Usuario
+</h5>
+
+<mat-divider></mat-divider>
+
+<form [formGroup]="userForm" (ngSubmit)="sendRole2()" novalidate>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field class="full-width example-form">
+        <input
+          matInput
+          placeholder="Nombre de usuario"
+          formControlName="username"
+          required
+        />
+        <mat-error
+          *ngIf="userForm.controls['username'].hasError('required')"
+        >
+          Nombre de usuario<strong>requerido</strong>.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field class="full-width example-form">
+        <input
+          matInput
+          placeholder="Contrasena"
+          formControlName="password"
+          required
+          type="password"
+        />
+        <mat-error
+          *ngIf="userForm.controls['password'].hasError('required')"
+        >
+          Contrasena<strong>requerida</strong>.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field>
+        <mat-select placeholder="Roles" formControlName="roles" multiple>
+          <mat-option *ngFor="let role of rolesList" [value]="role">{{
+            role.role
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-toolbar class="buttons-toolbar">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="sendUser()"
+      [disabled]="!userForm.valid"
+      style="margin-right: 10px;"
+      *ngIf="!update"
+    >
+      Crear
+    </button>
+    <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+  </mat-toolbar>
+</form>
