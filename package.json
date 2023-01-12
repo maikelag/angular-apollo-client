@@ -37,7 +37,7 @@
     "apollo-cache-inmemory": "^1.6.0",
     "apollo-client": "^2.6.0",
     "class-transformer": "^0.2.0",
-    "class-validator": "^0.9.1",
+    "class-validator": "^0.14.0",
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
